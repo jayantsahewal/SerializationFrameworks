@@ -7,7 +7,6 @@ Created on Mon Sep 12 21:23:15 2016
 
 from SimpleXMLRPCServer import SimpleXMLRPCServer
 import logging
-import os
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
@@ -19,6 +18,7 @@ server = SimpleXMLRPCServer(('localhost', 9000), logRequests=True, allow_none=Tr
 student_list = {}
 
 def add_student(id, name, address, phone):
+    print "received request to add a student."
     global student_list
     if id in student_list.keys():
         return "Student already exists. Use update_student() to update student info."
@@ -29,6 +29,7 @@ def add_student(id, name, address, phone):
     return "Added student with id " + str(id)
 
 def display_student(sid):
+    print "received request to display student information."
     global student_list    
     for id, student in student_list.iteritems():
         if id == sid:
@@ -40,6 +41,7 @@ def display_student(sid):
     return "Can't display. Invalid Student id."
 
 def update_student(sid, sinfoType, newValue):
+    print "received request to update student information."
     global student_list    
     for id, student in student_list.iteritems():
         if id == sid:
@@ -47,10 +49,11 @@ def update_student(sid, sinfoType, newValue):
                 if infoType.lower() == sinfoType.lower():
                     student[infoType] = newValue
                     return str(infoType) + " for student id " + str(id) + " updated to " + str(newValue)
-            return "Invalid arguments. Only possible values are name, phone or address"
+            return "Invalid arguments. Only possible values are name, phone or address."
     return "Can't update. Invalid Student id"
 
 def remove_student(sid):
+    print "received request to remove student."
     global student_list
     for id, student in student_list.iteritems():
         if id == sid:

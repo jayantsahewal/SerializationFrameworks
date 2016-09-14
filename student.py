@@ -15,6 +15,7 @@ Address: "111 St, abc City, xyz State - 11111", Phone: "123-456-7890"}}
 student_list = {}
 
 def add_student(id, name, address, phone):
+    print "received request to add a student."
     global student_list
     if id in student_list.keys():
         return "Student already exists. Use update_student() to update student info."
@@ -25,6 +26,7 @@ def add_student(id, name, address, phone):
     return "Added student with id " + str(id)
 
 def display_student(sid):
+    print "received request to display student information."
     global student_list    
     for id, student in student_list.iteritems():
         if id == sid:
@@ -36,6 +38,7 @@ def display_student(sid):
     return "Can't display. Invalid Student id."
 
 def update_student(sid, sinfoType, newValue):
+    print "received request to update student information."
     global student_list    
     for id, student in student_list.iteritems():
         if id == sid:
@@ -43,10 +46,11 @@ def update_student(sid, sinfoType, newValue):
                 if infoType.lower() == sinfoType.lower():
                     student[infoType] = newValue
                     return str(infoType) + " for student id " + str(id) + " updated to " + str(newValue)
-            return "Invalid arguments. only possible values are name, phone or address"
+            return "Invalid arguments. Only possible values are name, phone or address."
     return "Can't update. Invalid Student id"
 
 def remove_student(sid):
+    print "received request to remove student."
     global student_list
     for id, student in student_list.iteritems():
         if id == sid:
