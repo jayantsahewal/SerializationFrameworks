@@ -1,0 +1,22 @@
+{"namespace": "example.proto",
+ "protocol": "Mail",
+
+ "types": [
+     {"name": "Message", "type": "record",
+      "fields": [
+          {"name": "function_name",   "type": "string"},
+          {"name": "argument1", "type": "string"},
+          {"name": "argument2", "type": "string"},
+          {"name": "argument3", "type": "string"},
+          {"name": "argument4", "type": "string"}
+      ]
+     }
+ ],
+
+ "messages": {
+     "send": {
+         "request": [{"name": "message", "type": "Message"}],
+         "response": "string"
+     }
+ }
+}
